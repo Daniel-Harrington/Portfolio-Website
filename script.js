@@ -1,5 +1,5 @@
 import './style.css'
-import * as THREE from 'https://cdn.skypack.dev/three@0.130.0/build/three.module.js'
+import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 
