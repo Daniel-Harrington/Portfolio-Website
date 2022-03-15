@@ -1,0 +1,1 @@
+import{init}from"./components/init";import{tick}from"./components/animate.js";import"./style.css";init(),tick();
