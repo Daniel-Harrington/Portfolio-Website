@@ -7,7 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 const textureLoader = new THREE.TextureLoader()
 
 //Wave Texture
-const waveNormalTexture = textureLoader.load('./textures/Glass_Window_003_normal.jpg')
+const waveNormalTexture = textureLoader.load('./textures/Carbon_Fiber_001_normal.jpg')
 //Repeats and wraps the texture around wave
 waveNormalTexture.wrapS = waveNormalTexture.wrapT = THREE.RepeatWrapping;
 

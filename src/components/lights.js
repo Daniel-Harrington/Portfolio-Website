@@ -1,11 +1,13 @@
 import { scene } from './globals'
 import * as dat from 'dat.gui';
 import {PointLight,PointLightHelper,DirectionalLight,DirectionalLightHelper} from 'three';
+import {wave} from './objects';
 
 // Lights
 function setupLights(){
     const gui = new dat.GUI()
     const pointLight1 = new DirectionalLight()
+   
     pointLight1.position.x = 23
     pointLight1.position.y = -20.77
     pointLight1.position.z = 601
@@ -31,7 +33,8 @@ function setupLights(){
         .onChange(() => {
             pointLight1.color.set(light1Color.color)
         })
-    
+     const pointLight2 = new DirectionalLight()
+    scene.add(pointLight2)
     // const hemi = new THREE.HemisphereLight()
     // scene.add(hemi)
 }

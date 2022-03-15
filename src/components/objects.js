@@ -8,8 +8,8 @@ const contentBoxGeometry = new THREE.BoxBufferGeometry(1600, 800, 200)
 
 // Materials
 const waveMaterial = new THREE.MeshStandardMaterial()
-waveMaterial.metalness = 0.2
-waveMaterial.roughness = 0.8
+waveMaterial.metalness = 0.8
+waveMaterial.roughness = 0.2
 waveMaterial.color = new THREE.Color(0xff0000)
 waveMaterial.normalMap = waveNormalTexture
 waveMaterial.wireframe = false
