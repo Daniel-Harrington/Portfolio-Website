@@ -1,10 +1,54 @@
 import * as THREE from 'three';
 import { scene } from './globals';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+
 // Texture Loading
 
 //Creates Reusable Texture Loader
 const textureLoader = new THREE.TextureLoader()
+
+//Skybox Texture
+
+let skyboxImage = "corona";
+
+function createPathStrings(filename) {
+
+    const basePath = "./textures/skybox/";
+  
+    const baseFilename = basePath + filename;
+  
+    const fileType = ".png";
+  
+    const sides = ["ft", "bk", "up", "dn", "rt", "lf"];
+  
+    const pathStings = sides.map(side => {
+  
+      return baseFilename + "_" + side + fileType;
+  
+    });
+  
+    return pathStings;
+  
+  }
+
+function createMaterialArray(filename) {
+
+  const Imagepaths = createPathStrings(filename);
+
+  const materialArray = Imagepaths.map(image => {
+
+    let texture = new THREE.TextureLoader().load(image);
+
+    return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
+
+  });
+
+  return materialArray;
+
+}
+
+const skyboxMaterialArray = createMaterialArray(skyboxImage)
+
 
 //Wave Texture
 const waveNormalTexture = textureLoader.load('./textures/Carbon_Fiber_001_normal.jpg')
@@ -33,4 +77,4 @@ async function loadModels() {
     scene.add(testData.scene)
     return testData.scene
 }
-export { waveNormalTexture, loadModels}
+export { waveNormalTexture, loadModels,skyboxMaterialArray}

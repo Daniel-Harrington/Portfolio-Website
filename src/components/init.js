@@ -1,27 +1,30 @@
 import camera from './camera.js';
 import { renderer } from './renderer';
-import { scene,sizes } from './globals.js';
-import { wave, ContentBoxes, createBox } from './objects.js';
-import { setupLights } from './lights';
-import { setupBoxInteractions } from './interaction.js';
-import { loadModels } from './loaders.js';
+import { scene, sizes } from './globals.js';
+import { wave, ContentBoxes, createBox, skybox, water, updateSun, sky,skil, skillsBox } from './objects.js';
+import { initLights } from './lights';
+import { setupBoxInteractions, setupScroll } from './interaction.js';
 
+let skills;
 async function init() {
+    skills = await skillsBox()
     //Adding all meshes to scene
-    const testData = await loadModels()
-    console.log('here',testData)
-    scene.add(testData)
-    const skillsBox = createBox(testData,testData.position.clone(),testData.rotation.clone())
-    console.log('SkillsBox:',skillsBox)
-    setupBoxInteractions(skillsBox)
+    scene.add(skills)
+    setupBoxInteractions(skills)
     // ContentBoxes.forEach(box => {
     //     scene.add(box.mesh)
     //     setupBoxInteractions(box)
     // });
     scene.add(camera)
-    scene.add(wave)
+    console.log(skybox)
+    const nebula = skybox
+    scene.add(sky);
+    scene.add(nebula)
 
-    //Window Resizing Handler
+    console.log(water)
+    scene.add(water)
+    updateSun()
+    setupScroll(nebula)
     window.addEventListener('resize', () => {
         // Update sizes
         sizes.width = window.innerWidth
@@ -36,10 +39,10 @@ async function init() {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     })
     //Adding Lights
-    setupLights()
+    initLights()
 }
 
 
 
 
-export { init}
+export { init ,skills}

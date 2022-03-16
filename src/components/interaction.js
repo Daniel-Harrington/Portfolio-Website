@@ -16,13 +16,32 @@ const interaction = new Interaction(renderer, scene, camera)
 //prevent incorrect tweens and crashing from spam clicks
 let tweenInProgress = false;
 
+//Skybox Interaction
+function setupScroll(sky) {
+    window.addEventListener("wheel", ev => {
+        console.log('here')
+        if (!tweenInProgress){
+            let tweenRot = new TWEEN.Tween(sky.rotation)
+            .to({ x: sky.rotation.x - ev.deltaY/100 }, 2000)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start();
+        }
+        else{}
+        
+    });
+}
+
 //Box Interactions
 
 function setupBoxInteractions(object) {
     //Makes hovering with the cursor indicate box is clickable
     object.mesh.cursor = 'pointer';
     object.mesh.on('touchstart', ev => {
-        console.log(ev)
+        if (!tweenInProgress) {
+            contentboxOnClick(object.mesh, object.defaultRot, object.defaultPos, object.clicked)
+            //Flips the box clicked bool attribute
+            object.clicked = !object.clicked
+        }
     })
     object.mesh.on('touchmove', ev => {
         console.log(ev)
@@ -30,7 +49,7 @@ function setupBoxInteractions(object) {
 
     //Handles Clicks
     object.mesh.on('mousedown', ev => {
-        if(!tweenInProgress){
+        if (!tweenInProgress) {
             contentboxOnClick(object.mesh, object.defaultRot, object.defaultPos, object.clicked)
             //Flips the box clicked bool attribute
             object.clicked = !object.clicked
@@ -41,13 +60,13 @@ function setupBoxInteractions(object) {
 
 //Handles Content Animations
 const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
-    console.log('box',box)
-    console.log('boxDefR',defaultRot)
-    console.log('boxDefP',defaultPos)
+    console.log('box', box)
+    console.log('boxDefR', defaultRot)
+    console.log('boxDefP', defaultPos)
     let currentPos = box.position
-    console.log('currentpos',box.position)
+    console.log('currentpos', box.position)
     //Initializing new position in clear camera view
-    const newPos = new THREE.Vector3(0, 0, 0)
+    const newPos = new THREE.Vector3(0, 0, 4000)
     if (tweenInProgress == false) {
         //Checks whether this is bring-to-front or put-back click
         if (boxClicked == false) {
@@ -89,4 +108,4 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
         }
     }
 }
-export { setupBoxInteractions }
+export { setupBoxInteractions, setupScroll }

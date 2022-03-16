@@ -1,10 +1,9 @@
 import { scene } from './globals'
 import * as dat from 'dat.gui';
 import {PointLight,PointLightHelper,DirectionalLight,DirectionalLightHelper} from 'three';
-import {wave} from './objects';
 
 // Lights
-function setupLights(){
+function initLights(){
     const gui = new dat.GUI()
     const pointLight1 = new DirectionalLight()
    
@@ -39,4 +38,4 @@ function setupLights(){
     // scene.add(hemi)
 }
 
-export {setupLights};
+export {initLights};
