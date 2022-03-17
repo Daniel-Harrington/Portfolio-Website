@@ -1,6 +1,3 @@
-# Credits
-
-Boilerplate code for Three.js project from here https://github.com/designcourse/threejs-webpack-starter
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
