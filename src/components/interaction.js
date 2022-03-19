@@ -17,12 +17,11 @@ const interaction = new Interaction(renderer, scene, camera)
 let tweenInProgress = false;
 
 //Skybox Interaction
-function setupScroll(sky) {
+function setupSky(sky) {
     window.addEventListener("wheel", ev => {
-        console.log('here')
         if (!tweenInProgress){
             let tweenRot = new TWEEN.Tween(sky.rotation)
-            .to({ x: sky.rotation.x - ev.deltaY/100 }, 2000)
+            .to({ x: sky.rotation.x - ev.deltaY/300 }, 2000)
             .easing(TWEEN.Easing.Quadratic.Out)
             .start();
         }
@@ -108,4 +107,4 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
         }
     }
 }
-export { setupBoxInteractions, setupScroll }
+export { setupBoxInteractions, setupSky }

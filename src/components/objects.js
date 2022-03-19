@@ -1,10 +1,9 @@
-import { loadModels, skyboxMaterialArray, waveNormalTexture } from './loaders';
-import { Water } from 'three/examples/jsm/objects/Water.js';
-import { Sky } from 'three/examples/jsm/objects/Sky.js';
-import { renderer } from './renderer';
-import { scene } from './globals';
-import * as THREE from 'three';
 import * as dat from 'dat.gui';
+import * as THREE from 'three';
+import { Water } from 'three/examples/jsm/objects/Water.js';
+import { scene } from './globals';
+import { loadModels, skyboxMaterialArray, waveNormalTexture } from './loaders';
+import { renderer } from './renderer';
 //
 // Objects
 
@@ -12,12 +11,13 @@ const waveGeometry = new THREE.PlaneBufferGeometry(1000, 7000, 20, 140)
 
 const contentBoxGeometry = new THREE.BoxBufferGeometry(1600, 800, 200)
 
-const skyboxGeometry = new THREE.BoxGeometry(20000, 10000, 10000);
+const skyboxGeometry = new THREE.BoxGeometry(30000, 30000, 30000);
 
 
 
 // Materials
 const skyboxMaterial = skyboxMaterialArray
+skyboxMaterial.depthWrite 
 
 const waveMaterial = new THREE.MeshStandardMaterial()
 waveMaterial.metalness = 0.8
@@ -33,8 +33,6 @@ contentBoxMaterial.roughness = 1
 contentBoxMaterial.fog = false
 contentBoxMaterial.normalMap = waveNormalTexture
 
-const sky = new Sky();
-sky.scale.setScalar(10000);
 
 let sun = new THREE.Vector3()
 
@@ -57,43 +55,18 @@ let water = new Water(
         fog: scene.fog !== undefined
     }
 );
+
+//Adjusting water
+water.rotation.x = -Math.PI / 2
+water.translateZ(-500);
+water.material.uniforms.size.value = 0.1
+water.material.uniforms.distortionScale.value = 95
 /*
 * Creating Meshes
 */
 //
 
-
-
-
-const skyUniforms = sky.material.uniforms;
-
-skyUniforms['turbidity'].value = 10;
-skyUniforms['rayleigh'].value = 2;
-skyUniforms['mieCoefficient'].value = 0.005;
-skyUniforms['mieDirectionalG'].value = 0.8;
-
-const parameters = {
-    elevation: 2,
-    azimuth: 180
-};
-
-const pmremGenerator = new THREE.PMREMGenerator(renderer);
-
-function updateSun() {
-
-    const phi = THREE.MathUtils.degToRad(90 - parameters.elevation);
-    const theta = THREE.MathUtils.degToRad(parameters.azimuth);
-
-    sun.setFromSphericalCoords(1, phi, theta);
-
-    sky.material.uniforms['sunPosition'].value.copy(sun);
-    water.material.uniforms['sunDirection'].value.copy(sun).normalize();
-
-    scene.environment = pmremGenerator.fromScene(sky).texture;
-
-}
-
-updateSun();
+console.log('water:',water)
 //
 
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
@@ -106,9 +79,6 @@ wave.rotateY(Math.PI / 8);
 wave.rotateZ(-Math.PI / 2);
 
 
-//Adjusting water positioning
-water.rotateX(-Math.PI / 2)
-water.translateZ(-500);
 
 //Adjusting Skybox so distortion is hidden under the horizon
 
@@ -131,7 +101,8 @@ function createBox(obj) {
     return box
 }
 
-
+// const pmremGenerator = new THREE.PMREMGenerator(renderer);
+// scene.environment = pmremGenerator.fromEquirectangular
 //Individual Box Adjustments
 
 //Box1
@@ -172,15 +143,11 @@ ContentBoxes.push(contentBox3)
 
 const gui = new dat.GUI();
 
-const folderSky = gui.addFolder('Sky');
-folderSky.add(parameters, 'elevation', 0, 90, 0.1).onChange(updateSun);
-folderSky.add(parameters, 'azimuth', - 180, 180, 0.1).onChange(updateSun);
-folderSky.open();
 
 const waterUniforms = water.material.uniforms;
-
+console.log('waterboys',waterUniforms)
 const folderWater = gui.addFolder('Water');
-folderWater.add(waterUniforms.distortionScale, 'value', 0, 8, 0.1).name('distortionScale');
+folderWater.add(waterUniforms.distortionScale, 'value', 0, 200, 0.1).name('distortionScale');
 folderWater.add(waterUniforms.size, 'value', 0.1, 10, 0.1).name('size');
 folderWater.open();
 
@@ -192,7 +159,7 @@ async function skillsBox() {
     console.log('SkillsBox:', skillsBox)
     return skillsBox
 }
-
+console.log('this is water uniforms',water.material.uniforms['size'].value)
 
 export {
     ContentBoxes,
@@ -203,7 +170,6 @@ export {
     createBox,
     skybox,
     water,
-    updateSun,
-    sky,
     skillsBox
-}
+};
+

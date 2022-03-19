@@ -7,16 +7,15 @@ import { stats, rendererStats } from './debug';
 import { water } from './objects';
 const clock = new THREE.Clock()
 
-let i=0
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
     // Update objects
-    
-    water.material.uniforms['time'].value = elapsedTime *0.01;
+    water.material.uniforms['time'].value += 1/144;
+    skills.mesh.position.y += -1 * Math.sin(elapsedTime)
     // console.log('time uniform:', water.material.uniforms['time'].value )
     // Content Boxes Floating Animation
     ContentBoxes.forEach(box => {
-        box.mesh.position.y += -0.25 * Math.sin(elapsedTime)
+        box.mesh.position.y += -0.25 * Math.sin(elapsedTime*1.5)
         box.mesh.needsUpdate = true
     });
     //Wave Animation

@@ -1,15 +1,16 @@
 import camera from './camera.js';
+import {PMREMGenerator} from 'three'
 import { renderer } from './renderer';
 import { scene, sizes } from './globals.js';
-import { wave, ContentBoxes, createBox, skybox, water, updateSun, sky,skil, skillsBox } from './objects.js';
+import { skybox, water, updateSun, sky, skillsBox } from './objects.js';
 import { initLights } from './lights';
-import { setupBoxInteractions, setupScroll } from './interaction.js';
+import { setupBoxInteractions, setupSky } from './interaction.js';
 
 let skills;
 async function init() {
     skills = await skillsBox()
     //Adding all meshes to scene
-    scene.add(skills)
+    scene.add(skills.mesh)
     setupBoxInteractions(skills)
     // ContentBoxes.forEach(box => {
     //     scene.add(box.mesh)
@@ -18,13 +19,13 @@ async function init() {
     scene.add(camera)
     console.log(skybox)
     const nebula = skybox
-    scene.add(sky);
     scene.add(nebula)
 
     console.log(water)
     scene.add(water)
-    updateSun()
-    setupScroll(nebula)
+
+    setupSky(nebula)
+
     window.addEventListener('resize', () => {
         // Update sizes
         sizes.width = window.innerWidth
@@ -40,9 +41,12 @@ async function init() {
     })
     //Adding Lights
     initLights()
+
+
+
 }
 
 
 
 
-export { init ,skills}
+export { init, skills }

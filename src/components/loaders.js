@@ -38,9 +38,8 @@ function createMaterialArray(filename) {
   const materialArray = Imagepaths.map(image => {
 
     let texture = new THREE.TextureLoader().load(image);
-
-    return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
-
+    let material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
+    return material;
   });
 
   return materialArray;
@@ -67,7 +66,7 @@ async function loadModels() {
     const testData = await Promise.resolve(loader.loadAsync('./models/TestModel.glb'));
     console.log('testdata',testData);
     testData.scene.traverse(function(child){
-        console.log('traversing', child)
+        // console.log('traversing', child)
         if ( child.isMesh) {
            child.material.fog = false
             }
