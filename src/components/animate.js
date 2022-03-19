@@ -11,7 +11,7 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime()
     // Update objects
     water.material.uniforms['time'].value += 1/144;
-    skills.mesh.position.y += -1 * Math.sin(elapsedTime)
+    skills.mesh.position.y += -0.25 * Math.sin(elapsedTime)
     // console.log('time uniform:', water.material.uniforms['time'].value )
     // Content Boxes Floating Animation
     ContentBoxes.forEach(box => {
