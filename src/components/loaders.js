@@ -27,13 +27,14 @@ const audioLoader = new THREE.AudioLoader(loadingManager);
 audioLoader.load( './sounds/Waves.ogg', function( buffer ) {
 	ambientSound.setBuffer( buffer );
 	ambientSound.setVolume( 0.1 );
+  ambientSound.play()
 });
 
 function onTransitionEnd( event ) {
   
 	const element = event.target;
 	element.remove();
-  ambientSound.play()
+
 }
 //Creates Reusable Texture Loader
 const textureLoader = new THREE.TextureLoader(loadingManager)
