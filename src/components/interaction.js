@@ -19,16 +19,17 @@ let tweenInProgress = false;
 //Skybox Interaction
 function setupSky(sky) {
     window.addEventListener("wheel", ev => {
-        if (!tweenInProgress){
+        if (!tweenInProgress) {
             let tweenRot = new TWEEN.Tween(sky.rotation)
-            .to({ x: sky.rotation.x - ev.deltaY/300 }, 2000)
-            .easing(TWEEN.Easing.Quadratic.Out)
-            .start();
+                .to({ x: sky.rotation.x - ev.deltaY / 300 }, 2000)
+                .easing(TWEEN.Easing.Quadratic.Out)
+                .start();
         }
-        else{}
-        
+        else { }
+
     });
 }
+
 
 //Box Interactions
 
@@ -70,8 +71,12 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
         //Checks whether this is bring-to-front or put-back click
         if (boxClicked == false) {
             //Tween for (Any Start) -> (Front and Center)
-            let tweenPos = new TWEEN.Tween(currentPos)
-                .to(newPos, 400)
+            let tweenPos = new TWEEN.Tween(camera.position)
+                .to({
+                    x:box.position.x,
+                    y:box.position.y,
+                    z: 0
+                }, 700)
                 .easing(TWEEN.Easing.Cubic.In)
                 .onStart(() => { tweenInProgress = true })
                 .start();
@@ -87,8 +92,12 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
         }
         else {
             //Tween for (Front and Center) -> (Object's initial position)
-            let tweenPos = new TWEEN.Tween(currentPos)
-                .to(defaultPos, 400)
+            let tweenPos = new TWEEN.Tween(camera.position)
+                .to({
+                    x: camera.position.x - box.position.x,
+                    y: camera.position.y - box.position.y,
+                    z: 5000
+                }, 700)
                 .easing(TWEEN.Easing.Cubic.In)
                 .onStart(() => { tweenInProgress = true })
                 .onComplete(() => {

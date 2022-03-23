@@ -2,11 +2,11 @@ import camera from './camera.js';
 import {PMREMGenerator} from 'three'
 import { renderer } from './renderer';
 import { scene, sizes } from './globals.js';
-import { skybox, water, updateSun, sky, skillsBox } from './objects.js';
+import { skybox, water, updateSun, skillsBox } from './objects.js';
 import { initLights } from './lights';
-import { setupBoxInteractions, setupSky } from './interaction.js';
+import { setupBoxInteractions, setupSky} from './interaction.js';
 
-let skills;
+let skills,sky;
 async function init() {
     skills = await skillsBox()
     //Adding all meshes to scene
@@ -16,15 +16,15 @@ async function init() {
     //     scene.add(box.mesh)
     //     setupBoxInteractions(box)
     // });
+    
+   
     scene.add(camera)
     console.log(skybox)
-    const nebula = skybox
-    scene.add(nebula)
-
+    sky = skybox
+    scene.add(sky)  
     console.log(water)
     scene.add(water)
-
-    setupSky(nebula)
+    setupSky(sky)
 
     window.addEventListener('resize', () => {
         // Update sizes
@@ -49,4 +49,4 @@ async function init() {
 
 
 
-export { init, skills }
+export { init, skills,sky }
