@@ -12,15 +12,14 @@ const clock = new THREE.Clock()
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
     // Update objects
-    water.material.uniforms['time'].value += 2/144;
+    water.material.uniforms['time'].value += 1.2/144;
 
     if(!skills.clicked)
     {
         skills.mesh.position.y += -0.25 * Math.sin(elapsedTime)
     }
 
-    sky.rotation.x -= 0.0001
-    sky.rotation.y -= 0.0001
+    sky.rotation.x += 0.0001
     sun.intensity = Math.max(10 * Math.sin(sky.rotation.x-0.5),0)
     // console.log('time uniform:', water.material.uniforms['time'].value )
     // Content Boxes Floating Animation

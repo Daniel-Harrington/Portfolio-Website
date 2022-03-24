@@ -5,8 +5,8 @@ import { scene } from './globals';
 import { loadModels, skyboxMaterialArray} from './loaders';
 //
 // Objects
-const skyboxGeometry = new THREE.BoxGeometry(50000, 50000, 50000);
-const waterGeometry = new THREE.CircleGeometry(15000, 500);
+const skyboxGeometry = new THREE.BoxGeometry(30000, 30000, 30000);
+const waterGeometry = new THREE.CircleGeometry(10000, 500);
 
 // Materials
 const skyboxMaterial = skyboxMaterialArray
@@ -66,7 +66,7 @@ function createBox(obj) {
 //Rotate Sky
 
 skybox.rotateY(Math.PI/2)
-skybox.rotateZ(Math.PI)
+skybox.rotateZ(Math.PI/6.5)
 // const pmremGenerator = new THREE.PMREMGenerator(renderer);
 // scene.environment = pmremGenerator.fromEquirectangular
 //Individual Box Adjustments
