@@ -8,7 +8,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 let loadSound = new THREE.Audio(audiolistener);
 let ambientSound = new THREE.Audio(audiolistener);
 const loadSoundLoader = new THREE.AudioLoader();
-loadSoundLoader.load('./sounds/Loaded.ogg', function (buffer) {
+loadSoundLoader.load('./sounds/Loaded.mp3', function (buffer) {
   loadSound.setBuffer(buffer);
   loadSound.setVolume(0.1);
 });
@@ -24,7 +24,7 @@ const loadingManager = new THREE.LoadingManager(() => {
 
 //
 const audioLoader = new THREE.AudioLoader(loadingManager);
-audioLoader.load('./sounds/Waves.ogg', function (buffer) {
+audioLoader.load('./sounds/Waves.mp3', function (buffer) {
   ambientSound.setBuffer(buffer);
   ambientSound.setVolume(0.01);
   ambientSound.play()
