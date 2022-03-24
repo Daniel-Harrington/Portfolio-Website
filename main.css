@@ -105,4 +105,22 @@ body
     }
 }
 
+#content-area {
+    visibility: hidden;
+	position: absolute;
+	width: 50%;
+	height: 50%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+	background-color: #f8f8f8;
+	opacity: 0;
+ 	transition: 0.5s opacity;
+}
+#content-area.fade-in {
+    opacity: 1;
+}
+
 /*# sourceMappingURL=main.css.map*/
