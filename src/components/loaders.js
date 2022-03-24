@@ -27,6 +27,7 @@ const audioLoader = new THREE.AudioLoader(loadingManager);
 audioLoader.load('./sounds/Waves.mp3', function (buffer) {
   ambientSound.setBuffer(buffer);
   ambientSound.setVolume(0.01);
+  ambientSound.loop(true);
   ambientSound.play()
 });
 
