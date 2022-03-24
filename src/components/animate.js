@@ -6,6 +6,7 @@ import { ContentBoxes, skybox, wave } from './objects'
 import { stats, rendererStats } from './debug';
 import { water } from './objects';
 import { scene } from './globals';
+import { sun } from './lights';
 const clock = new THREE.Clock()
 
 const tick = () => {
@@ -19,6 +20,8 @@ const tick = () => {
     }
 
     sky.rotation.x -= 0.0001
+    sky.rotation.y -= 0.0001
+    sun.intensity = Math.max(10 * Math.sin(sky.rotation.x-0.5),0)
     // console.log('time uniform:', water.material.uniforms['time'].value )
     // Content Boxes Floating Animation
 

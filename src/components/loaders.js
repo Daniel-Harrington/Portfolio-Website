@@ -10,7 +10,7 @@ let ambientSound = new THREE.Audio(audiolistener);
 const loadSoundLoader = new THREE.AudioLoader();
 loadSoundLoader.load('./sounds/Loaded.ogg', function (buffer) {
   loadSound.setBuffer(buffer);
-  loadSound.setVolume(1);
+  loadSound.setVolume(0.1);
 });
 
 //Loading Screen
@@ -26,7 +26,7 @@ const loadingManager = new THREE.LoadingManager(() => {
 const audioLoader = new THREE.AudioLoader(loadingManager);
 audioLoader.load('./sounds/Waves.ogg', function (buffer) {
   ambientSound.setBuffer(buffer);
-  ambientSound.setVolume(0.1);
+  ambientSound.setVolume(0.01);
   ambientSound.play()
 });
 

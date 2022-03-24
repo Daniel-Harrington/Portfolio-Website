@@ -4,10 +4,10 @@ import { sizes,audiolistener } from './globals';
 
 //setup camera for scene
 
-const camera = new PerspectiveCamera(70, sizes.width / sizes.height, 10, 100000)
+const camera = new PerspectiveCamera(70, sizes.width / sizes.height, 10, 50000)
 camera.position.x = 0
 camera.position.y = -300
-camera.position.z = 2500
+camera.position.z = 5000
 camera.add( audiolistener );
 
 const gui = new dat.GUI();

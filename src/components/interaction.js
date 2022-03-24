@@ -4,6 +4,7 @@ import { TWEEN } from 'three/examples/jsm/libs/tween.module.min';
 import { Interaction } from 'three.interaction';
 import { renderer } from './renderer';
 import camera from './camera';
+import { sun } from './lights';
 
 /**
  * Interaction Handling
@@ -20,12 +21,23 @@ let tweenInProgress = false;
 function setupSky(sky) {
     window.addEventListener("wheel", ev => {
         if (!tweenInProgress) {
+            console.log('cur sun intensity', sun.intensity)
+            console.log('delta', ev.deltaY)
+            console.log('Math.sin(sky.rotation.x):', Math.sin(sky.rotation.x))
+            console.log('sun.intensity - ev.deltaY/300', sun.intensity - ev.deltaY / 100)
             let tweenRot = new TWEEN.Tween(sky.rotation)
-                .to({ x: sky.rotation.x - ev.deltaY / 300 }, 2000)
+                .to({ x: sky.rotation.x - ev.deltaY / 600 }, 1000)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start();
+            console.log(Math.sign(ev.deltaY))
+            if (Math.sin(sky.rotation.x) > 0.4) {
+                let tweenSun = new TWEEN.Tween(sun)
+                    .to({ intensity: Math.max(10 * Math.sin(sky.rotation.x-0.5),0)}, 500)
+                    .easing(TWEEN.Easing.Quadratic.Out)
+                    .start();
+            }
+            console.log('cur sun intensity', sun.intensity)
         }
-        else { }
 
     });
 }
@@ -72,7 +84,7 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
             //Tween for (Any Start) -> (Front and Center)
             let tweenCamPos = new TWEEN.Tween(camera.position)
                 .to({
-                    x:2500,
+                    x: 2500,
                     y: 500,
                     z: 0
                 }, 1000)
@@ -102,7 +114,8 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
             let tweenBoxRot = new TWEEN.Tween(box.rotation)
                 .to({
 
-                    y: -Math.PI / 2 }, 300)
+                    y: -Math.PI / 2
+                }, 300)
                 .easing(TWEEN.Easing.Cubic.Out)
                 .onComplete(() => {
                     tweenInProgress = false

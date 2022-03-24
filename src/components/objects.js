@@ -2,16 +2,15 @@ import * as dat from 'dat.gui';
 import * as THREE from 'three';
 import { Water } from 'three/examples/jsm/objects/Water.js';
 import { scene } from './globals';
-import { loadModels, skyboxMaterialArray, waveNormalTexture } from './loaders';
+import { loadModels, skyboxMaterialArray} from './loaders';
 //
 // Objects
-const skyboxGeometry = new THREE.BoxGeometry(100000, 100000, 100000);
+const skyboxGeometry = new THREE.BoxGeometry(50000, 50000, 50000);
+const waterGeometry = new THREE.CircleGeometry(15000, 500);
 
 // Materials
 const skyboxMaterial = skyboxMaterialArray
-let sun = new THREE.Vector3()
 
-const waterGeometry = new THREE.CircleGeometry(15000, 500);
 
 let water = new Water(
     waterGeometry,
@@ -67,7 +66,7 @@ function createBox(obj) {
 //Rotate Sky
 
 skybox.rotateY(Math.PI/2)
-skybox.rotateZ(Math.PI/4)
+skybox.rotateZ(Math.PI)
 // const pmremGenerator = new THREE.PMREMGenerator(renderer);
 // scene.environment = pmremGenerator.fromEquirectangular
 //Individual Box Adjustments
