@@ -11,7 +11,7 @@ const clock = new THREE.Clock()
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
     // Update objects
-    water.material.uniforms['time'].value += 1/144;
+    water.material.uniforms['time'].value += 2/144;
 
     if(!skills.clicked)
     {

@@ -6,7 +6,7 @@ import { sizes,audiolistener } from './globals';
 
 const camera = new PerspectiveCamera(70, sizes.width / sizes.height, 10, 100000)
 camera.position.x = 0
-camera.position.y = -200
+camera.position.y = -300
 camera.position.z = 2500
 camera.add( audiolistener );
 

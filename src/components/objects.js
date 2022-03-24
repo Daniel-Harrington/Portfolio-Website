@@ -35,7 +35,7 @@ let water = new Water(
 //Adjusting water
 water.rotation.x = -Math.PI / 2
 water.translateZ(-500);
-water.material.uniforms.size.value = 0.7
+water.material.uniforms.size.value = 1.4
 water.material.uniforms.distortionScale.value = 50
 /*
 * Creating Meshes
