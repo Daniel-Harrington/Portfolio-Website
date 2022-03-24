@@ -32,7 +32,7 @@ function setupSky(sky) {
             console.log(Math.sign(ev.deltaY))
             if (Math.sin(sky.rotation.x) > 0.4) {
                 let tweenSun = new TWEEN.Tween(sun)
-                    .to({ intensity: Math.max(10 * Math.sin(sky.rotation.x-0.5),0)}, 500)
+                    .to({ intensity: Math.max(10 * Math.sin(sky.rotation.x - 0.5), 0) }, 500)
                     .easing(TWEEN.Easing.Quadratic.Out)
                     .start();
             }
@@ -74,6 +74,7 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
     console.log('box', box)
     console.log('boxDefR', defaultRot)
     console.log('boxDefP', defaultPos)
+    const content = document.getElementById('content-area')
     let currentPos = box.position
     console.log('currentpos', box.position)
     //Initializing new position in clear camera view
@@ -89,6 +90,10 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
                     z: 0
                 }, 1000)
                 .easing(TWEEN.Easing.Back.In)
+                .onComplete(() => {
+                    content.style.visibility = 'visible'
+                    content.classList.add('fade-in');
+                })
                 .onStart(() => { tweenInProgress = true })
                 .start();
             let tweenBoxPos = new TWEEN.Tween(box.position)
@@ -125,6 +130,7 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
         }
         else {
             //Tween for (Front and Center) -> (Object's initial position)
+            content.classList.remove('fade-in')
             let tweenRotation = new TWEEN.Tween(box.rotation)
                 .to({ y: defaultRot.y }, 300)
                 .easing(TWEEN.Easing.Back.In)
@@ -154,6 +160,9 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
                 .easing(TWEEN.Easing.
                     Back.In)
                 .onStart(() => { tweenInProgress = true })
+                .onComplete(() => {
+                    content.style.visibility = 'hidden'
+                })
                 .start();
             let tweenCamRot = new TWEEN.Tween(camera.rotation)
                 .to({

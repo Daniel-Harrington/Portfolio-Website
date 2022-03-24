@@ -1,5 +1,4 @@
 import camera from './camera.js';
-import {PMREMGenerator} from 'three'
 import { renderer } from './renderer';
 import { scene, sizes } from './globals.js';
 import { skybox, water, updateSun, skillsBox } from './objects.js';
