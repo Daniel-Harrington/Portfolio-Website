@@ -5,15 +5,13 @@ import { scene } from './globals';
 import { loadModels, skyboxMaterialArray, waveNormalTexture } from './loaders';
 //
 // Objects
-const skyboxGeometry = new THREE.BoxGeometry(30000, 30000, 30000);
+const skyboxGeometry = new THREE.BoxGeometry(100000, 100000, 100000);
 
 // Materials
 const skyboxMaterial = skyboxMaterialArray
-skyboxMaterial.depthWrite 
-
 let sun = new THREE.Vector3()
 
-const waterGeometry = new THREE.PlaneGeometry(30000, 30000);
+const waterGeometry = new THREE.CircleGeometry(15000, 500);
 
 let water = new Water(
     waterGeometry,
@@ -37,8 +35,8 @@ let water = new Water(
 //Adjusting water
 water.rotation.x = -Math.PI / 2
 water.translateZ(-500);
-water.material.uniforms.size.value = 0.1
-water.material.uniforms.distortionScale.value = 95
+water.material.uniforms.size.value = 0.7
+water.material.uniforms.distortionScale.value = 50
 /*
 * Creating Meshes
 */
@@ -66,6 +64,10 @@ function createBox(obj) {
     return box
 }
 
+//Rotate Sky
+
+skybox.rotateY(Math.PI/2)
+skybox.rotateZ(Math.PI/4)
 // const pmremGenerator = new THREE.PMREMGenerator(renderer);
 // scene.environment = pmremGenerator.fromEquirectangular
 //Individual Box Adjustments

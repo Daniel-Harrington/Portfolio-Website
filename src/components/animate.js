@@ -18,7 +18,7 @@ const tick = () => {
         skills.mesh.position.y += -0.25 * Math.sin(elapsedTime)
     }
 
-    sky.rotation.x -= 0.0003
+    sky.rotation.x -= 0.0001
     // console.log('time uniform:', water.material.uniforms['time'].value )
     // Content Boxes Floating Animation
 

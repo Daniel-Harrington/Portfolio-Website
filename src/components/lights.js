@@ -26,6 +26,7 @@ function initLights(){
     // scene.add(LightHelper)
 
     const ambient = new AmbientLight()
+    ambient.intensity = 0.4
     scene.add(ambient)
 }
 

@@ -30,7 +30,6 @@ function setupSky(sky) {
     });
 }
 
-
 //Box Interactions
 
 function setupBoxInteractions(object) {
@@ -71,18 +70,39 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
         //Checks whether this is bring-to-front or put-back click
         if (boxClicked == false) {
             //Tween for (Any Start) -> (Front and Center)
-            let tweenPos = new TWEEN.Tween(camera.position)
+            let tweenCamPos = new TWEEN.Tween(camera.position)
                 .to({
-                    x:box.position.x,
-                    y:box.position.y,
+                    x:2500,
+                    y: 500,
                     z: 0
-                }, 700)
-                .easing(TWEEN.Easing.Cubic.In)
+                }, 1000)
+                .easing(TWEEN.Easing.Back.In)
                 .onStart(() => { tweenInProgress = true })
                 .start();
+            let tweenBoxPos = new TWEEN.Tween(box.position)
+                .to({
+                    x: -2000,
+                    y: 2500,
+                    z: 0
+                }, 1000)
+                .easing(TWEEN.Easing.Cubic.Out)
+                .onComplete(() => {
+                    tweenInProgress = false
+                    boxClicked = true
+                })
+                .start();
             //Tween for (Any Rotation) -> (180 flip on Y axis and turned to face camera)
-            let tweenRotation = new TWEEN.Tween(box.rotation)
-                .to({ y: Math.PI }, 300)
+            let tweenCamRot = new TWEEN.Tween(camera.rotation)
+                .to({
+                    y: Math.PI / 2
+                }, 1000)
+                .easing(TWEEN.Easing.Linear.None)
+                .onStart(() => { tweenInProgress = true })
+                .start();
+            let tweenBoxRot = new TWEEN.Tween(box.rotation)
+                .to({
+
+                    y: -Math.PI / 2 }, 300)
                 .easing(TWEEN.Easing.Cubic.Out)
                 .onComplete(() => {
                     tweenInProgress = false
@@ -92,28 +112,47 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
         }
         else {
             //Tween for (Front and Center) -> (Object's initial position)
-            let tweenPos = new TWEEN.Tween(camera.position)
+            let tweenRotation = new TWEEN.Tween(box.rotation)
+                .to({ y: defaultRot.y }, 300)
+                .easing(TWEEN.Easing.Back.In)
+                .onComplete(() => {
+                    tweenInProgress = false
+                    boxClicked = false
+                })
+                .start();
+            let boxPos = new TWEEN.Tween(box.position)
+                .to(defaultPos, 600)
+                .easing(TWEEN.Easing.
+                    Back.In)
+                .onComplete(() => {
+                    tweenInProgress = false
+                    boxClicked = true
+                    //Tween for (Flipped and Facing Camera) -> (Object's initial Rotation)
+                    //Waiting until position tween is done so rotation doesn't clip Camera\
+
+                })
+                .start();
+            let tweenCamPos = new TWEEN.Tween(camera.position)
                 .to({
-                    x: camera.position.x - box.position.x,
-                    y: camera.position.y - box.position.y,
+                    x: 0,
+                    y: -200,
                     z: 5000
+                }, 700)
+                .easing(TWEEN.Easing.
+                    Back.In)
+                .onStart(() => { tweenInProgress = true })
+                .start();
+            let tweenCamRot = new TWEEN.Tween(camera.rotation)
+                .to({
+                    y: 0
                 }, 700)
                 .easing(TWEEN.Easing.Cubic.In)
                 .onStart(() => { tweenInProgress = true })
-                .onComplete(() => {
-                    //Tween for (Flipped and Facing Camera) -> (Object's initial Rotation)
-                    //Waiting until position tween is done so rotation doesn't clip Camera
-                    let tweenRotation = new TWEEN.Tween(box.rotation)
-                        .to({ y: defaultRot.y }, 300)
-                        .easing(TWEEN.Easing.Cubic.Out)
-                        .onComplete(() => {
-                            tweenInProgress = false
-                            boxClicked = false
-                        })
-                        .start();
-                })
                 .start();
+
         }
     }
+
 }
+
 export { setupBoxInteractions, setupSky }
