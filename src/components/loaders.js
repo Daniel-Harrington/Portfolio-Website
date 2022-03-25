@@ -80,25 +80,27 @@ function createMaterialArray(filename) {
 }
 
 const skyboxMaterialArray = createMaterialArray(skyboxImage)
+//Setup Model
+function setupModel(data) {
+  const model = data.scene;
+  return model;
+}
 
 //Model Loader
 
 
-
-//Setup Model
 async function loadModels() {
   const loader = new GLTFLoader(loadingManager)
-  const testData = await Promise.resolve(loader.loadAsync('./models/Skills.glb'));
-  console.log('testdata', testData);
-  testData.scene.traverse(function (child) {
-    // console.log('traversing', child)
-    if (child.isMesh) {
-      child.material.fog = false
-    }
-  })
-  testData.scene.position.set(0, 0, -1000)
-  testData.scene.scale.set(2, 2, 2)
-  scene.add(testData.scene)
-  return testData.scene
+  const [skillsData,projectsData] = await Promise.all([
+    loader.loadAsync('./models/Skills.glb'),
+    loader.loadAsync('./models/Projects.glb')
+  ]);
+   
+  const skills = setupModel( skillsData)
+  const projects = setupModel(projectsData)
+  return {
+    skills,
+    projects
+  }
 }
 export {loadModels, skyboxMaterialArray }

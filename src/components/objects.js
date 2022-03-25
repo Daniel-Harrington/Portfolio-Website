@@ -87,12 +87,26 @@ folderWater.add(waterUniforms.size, 'value', 0.1, 10, 0.1).name('size');
 folderWater.open();
 
 async function skillsBox() {
-    const testData = await loadModels()
-    console.log('here', testData)
-    scene.add(testData)
-    const skillsBox = createBox(testData, testData.position.clone(), testData.rotation.clone())
+    const {skills} = await loadModels()
+    console.log('skills:',skills)
+    scene.add(skills)
+    skills.scale.set(2,2,2)
+    skills.position.set(0, 0, -1000)
+    const skillsBox = createBox(skills, skills.position.clone(), skills.rotation.clone())
     console.log('SkillsBox:', skillsBox)
     return skillsBox
+}
+async function projectsBox() {
+    const { projects} = await loadModels()
+    console.log(' projects:', projects)
+    scene.add( projects)
+    projects.scale.set(3,3,3)
+    projects.position.set(2000, 1000, -1000)
+    projects.rotateY(-Math.PI/5)
+    projects.rotateX(Math.PI/6)
+    const  projectsBox = createBox( projects,  projects.position.clone(),  projects.rotation.clone())
+    console.log(' projectsBox:',  projectsBox)
+    return  projectsBox
 }
 console.log('this is water uniforms',water.material.uniforms['size'].value)
 
@@ -100,6 +114,7 @@ export {
     createBox,
     skybox,
     water,
-    skillsBox
+    skillsBox,
+    projectsBox
 };
 

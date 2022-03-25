@@ -32,7 +32,7 @@ function setupSky(sky) {
             console.log(Math.sign(ev.deltaY))
             if (Math.sin(sky.rotation.x) > 0.4) {
                 let tweenSun = new TWEEN.Tween(sun)
-                    .to({ intensity: Math.max(10 * Math.sin(sky.rotation.x - 0.5), 0) }, 500)
+                    .to({ intensity: Math.max(15 * Math.sin(sky.rotation.x - 0.5), 0) }, 500)
                     .easing(TWEEN.Easing.Quadratic.Out)
                     .start();
             }
@@ -118,8 +118,9 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
                 .start();
             let tweenBoxRot = new TWEEN.Tween(box.rotation)
                 .to({
-
-                    y: -Math.PI / 2
+                    x: 0,
+                    y: -Math.PI / 2,
+                    z: 0
                 }, 300)
                 .easing(TWEEN.Easing.Cubic.Out)
                 .onComplete(() => {
@@ -132,7 +133,10 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
             //Tween for (Front and Center) -> (Object's initial position)
             content.classList.remove('fade-in')
             let tweenRotation = new TWEEN.Tween(box.rotation)
-                .to({ y: defaultRot.y }, 300)
+                .to({
+                    x: defaultRot.x, 
+                    y: defaultRot.y,
+                    z: defaultRot.z }, 300)
                 .easing(TWEEN.Easing.Back.In)
                 .onComplete(() => {
                     tweenInProgress = false
