@@ -2,7 +2,7 @@ import * as dat from 'dat.gui';
 import * as THREE from 'three';
 import { Water } from 'three/examples/jsm/objects/Water.js';
 import { scene } from './globals';
-import { loadModels, skyboxMaterialArray} from './loaders';
+import { loadModels, skyboxMaterialArray } from './loaders';
 //
 // Objects
 const skyboxGeometry = new THREE.BoxGeometry(30000, 30000, 30000);
@@ -17,7 +17,7 @@ let water = new Water(
     {
         textureWidth: 512,
         textureHeight: 512,
-        waterNormals: new THREE.TextureLoader().load('textures/waternormals.jpg', function (texture) {
+        waterNormals: new THREE.TextureLoader().load('textures/waternormals.webp', function (texture) {
 
             texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
@@ -41,7 +41,7 @@ water.material.uniforms.distortionScale.value = 50
 */
 //
 
-console.log('water:',water)
+console.log('water:', water)
 //
 
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
@@ -65,8 +65,8 @@ function createBox(obj) {
 
 //Rotate Sky
 
-skybox.rotateY(Math.PI/2)
-skybox.rotateZ(Math.PI/6.5)
+skybox.rotateY(Math.PI / 2)
+skybox.rotateZ(Math.PI / 6.5)
 // const pmremGenerator = new THREE.PMREMGenerator(renderer);
 // scene.environment = pmremGenerator.fromEquirectangular
 //Individual Box Adjustments
@@ -74,40 +74,39 @@ skybox.rotateZ(Math.PI/6.5)
 //skillsbox
 //DeepCopying the needed default info before any tweening is applied
 
-//temp
-
-const gui = new dat.GUI();
-
-
 const waterUniforms = water.material.uniforms;
-console.log('waterboys',waterUniforms)
-const folderWater = gui.addFolder('Water');
-folderWater.add(waterUniforms.distortionScale, 'value', 0, 200, 0.1).name('distortionScale');
-folderWater.add(waterUniforms.size, 'value', 0.1, 10, 0.1).name('size');
+console.log('waterboys', waterUniforms)
+if (process.env.NODE_ENV === 'development') {
+    const gui = new dat.GUI();
+    const folderWater = gui.addFolder('Water');
+    folderWater.add(waterUniforms.distortionScale, 'value', 0, 200, 0.1).name('distortionScale');
+    folderWater.add(waterUniforms.size, 'value', 0.1, 10, 0.1).name('size');
+
+}
 
 async function skillsBox() {
-    const {skills} = await loadModels()
-    console.log('skills:',skills)
+    const { skills } = await loadModels()
+    console.log('skills:', skills)
     scene.add(skills)
-    skills.scale.set(2,2,2)
+    skills.scale.set(2, 2, 2)
     skills.position.set(0, 0, -1000)
     const skillsBox = createBox(skills, skills.position.clone(), skills.rotation.clone())
     console.log('SkillsBox:', skillsBox)
     return skillsBox
 }
 async function projectsBox() {
-    const { projects} = await loadModels()
+    const { projects } = await loadModels()
     console.log(' projects:', projects)
-    scene.add( projects)
-    projects.scale.set(3,3,3)
+    scene.add(projects)
+    projects.scale.set(3, 3, 3)
     projects.position.set(1000, 1000, -1000)
-    projects.rotateY(-Math.PI/5)
-    projects.rotateX(Math.PI/6)
-    const  projectsBox = createBox( projects,  projects.position.clone(),  projects.rotation.clone())
-    console.log(' projectsBox:',  projectsBox)
-    return  projectsBox
+    projects.rotateY(-Math.PI / 5)
+    projects.rotateX(Math.PI / 6)
+    const projectsBox = createBox(projects, projects.position.clone(), projects.rotation.clone())
+    console.log(' projectsBox:', projectsBox)
+    return projectsBox
 }
-console.log('this is water uniforms',water.material.uniforms['size'].value)
+console.log('this is water uniforms', water.material.uniforms['size'].value)
 
 export {
     createBox,

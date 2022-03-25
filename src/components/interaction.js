@@ -39,7 +39,7 @@ function setupSky(sky) {
             // console.log('cur sun intensity', sun.intensity)
         }
 
-    });
+    },{ passive: true});
 }
 
 //Box Interactions
@@ -53,10 +53,10 @@ function setupBoxInteractions(object) {
             //Flips the box clicked bool attribute
             object.clicked = !object.clicked
         }
-    })
+    },{ passive: true})
     object.mesh.on('touchmove', ev => {
         console.log(ev)
-    })
+    },{ passive: true})
 
     //Handles Clicks
     object.mesh.on('mousedown', ev => {

@@ -24,7 +24,7 @@ const loadingManager = new THREE.LoadingManager(() => {
 
 //
 const audioLoader = new THREE.AudioLoader(loadingManager);
-audioLoader.load('./sounds/Waves.mp3', function (buffer) {
+audioLoader.load('./sounds/WavesReduced.mp3', function (buffer) {
   ambientSound.setBuffer(buffer);
   ambientSound.setVolume(0.01);
   ambientSound.setLoop(true);
@@ -39,7 +39,6 @@ function onTransitionEnd(event) {
 }
 //Creates Reusable Texture Loaders
 const textureLoader = new THREE.TextureLoader(loadingManager)
-const cubeLoader = new THREE.CubeTextureLoader(loadingManager).setPath("./textures/skybox/")
 //Skybox Texture
 
 let skyboxImage = "space";
@@ -50,7 +49,7 @@ function createPathStrings(filename) {
 
   const baseFilename = basePath + filename;
 
-  const fileType = ".png";
+  const fileType = ".webp";
 
   const sides = ["px", "nx", "py", "ny", "pz", "nz"];
 

@@ -2,10 +2,8 @@ import * as THREE from 'three';
 import { skills, sky,projects } from './init';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min';
 import { render, renderer } from './renderer';
-import { ContentBoxes, skybox, wave } from './objects'
 import { stats, rendererStats } from './debug';
 import { water } from './objects';
-import { scene } from './globals';
 import { sun } from './lights';
 const clock = new THREE.Clock()
 
@@ -28,9 +26,10 @@ const tick = () => {
     render()
 
     //Stats
+    if (process.env.NODE_ENV === 'development') {
+        rendererStats.update(renderer);
+    }
     stats.update()
-    rendererStats.update(renderer);
-
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
