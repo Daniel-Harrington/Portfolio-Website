@@ -100,7 +100,7 @@ async function projectsBox() {
     console.log(' projects:', projects)
     scene.add( projects)
     projects.scale.set(3,3,3)
-    projects.position.set(2000, 1000, -1000)
+    projects.position.set(1000, 1000, -1000)
     projects.rotateY(-Math.PI/5)
     projects.rotateX(Math.PI/6)
     const  projectsBox = createBox( projects,  projects.position.clone(),  projects.rotation.clone())

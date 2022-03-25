@@ -29,14 +29,14 @@ function setupSky(sky) {
                 .to({ x: sky.rotation.x - ev.deltaY / 600 }, 1000)
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start();
-            console.log(Math.sign(ev.deltaY))
+            // console.log(Math.sign(ev.deltaY))
             if (Math.sin(sky.rotation.x) > 0.4) {
                 let tweenSun = new TWEEN.Tween(sun)
                     .to({ intensity: Math.max(15 * Math.sin(sky.rotation.x - 0.5), 0) }, 500)
                     .easing(TWEEN.Easing.Quadratic.Out)
                     .start();
             }
-            console.log('cur sun intensity', sun.intensity)
+            // console.log('cur sun intensity', sun.intensity)
         }
 
     });
