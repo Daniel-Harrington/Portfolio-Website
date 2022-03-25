@@ -1,7 +1,7 @@
 
 ## Setup
-Download [Node.js](https://nodejs.org/en/download/).
-Run this followed commands:
+
+How to run this locally:
 
 ``` bash
 # Install dependencies (only the first time)
