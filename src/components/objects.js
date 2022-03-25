@@ -74,15 +74,6 @@ skybox.rotateZ(Math.PI / 6.5)
 //skillsbox
 //DeepCopying the needed default info before any tweening is applied
 
-const waterUniforms = water.material.uniforms;
-console.log('waterboys', waterUniforms)
-if (process.env.NODE_ENV === 'development') {
-    const gui = new dat.GUI();
-    const folderWater = gui.addFolder('Water');
-    folderWater.add(waterUniforms.distortionScale, 'value', 0, 200, 0.1).name('distortionScale');
-    folderWater.add(waterUniforms.size, 'value', 0.1, 10, 0.1).name('size');
-
-}
 
 async function skillsBox() {
     const { skills } = await loadModels()

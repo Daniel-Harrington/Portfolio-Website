@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { skills, sky,projects } from './init';
+import { skills, sky, projects } from './init';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min';
 import { render, renderer } from './renderer';
 import { stats, rendererStats } from './debug';
@@ -26,9 +26,7 @@ const tick = () => {
     render()
 
     //Stats
-    if (process.env.NODE_ENV === 'development') {
-        rendererStats.update(renderer);
-    }
+    rendererStats.update(renderer);
     stats.update()
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
