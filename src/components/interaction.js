@@ -21,10 +21,10 @@ let tweenInProgress = false;
 function setupSky(sky) {
     window.addEventListener("wheel", ev => {
         if (!tweenInProgress) {
-            console.log('cur sun intensity', sun.intensity)
-            console.log('delta', ev.deltaY)
-            console.log('Math.sin(sky.rotation.x):', Math.sin(sky.rotation.x))
-            console.log('sun.intensity - ev.deltaY/300', sun.intensity - ev.deltaY / 100)
+            // console.log('cur sun intensity', sun.intensity)
+            // console.log('delta', ev.deltaY)
+            // console.log('Math.sin(sky.rotation.x):', Math.sin(sky.rotation.x))
+            // console.log('sun.intensity - ev.deltaY/300', sun.intensity - ev.deltaY / 100)
             let tweenRot = new TWEEN.Tween(sky.rotation)
                 .to({ x: sky.rotation.x - ev.deltaY / 600 }, 1000)
                 .easing(TWEEN.Easing.Quadratic.Out)

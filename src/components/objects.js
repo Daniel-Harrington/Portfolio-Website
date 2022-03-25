@@ -84,7 +84,6 @@ console.log('waterboys',waterUniforms)
 const folderWater = gui.addFolder('Water');
 folderWater.add(waterUniforms.distortionScale, 'value', 0, 200, 0.1).name('distortionScale');
 folderWater.add(waterUniforms.size, 'value', 0.1, 10, 0.1).name('size');
-folderWater.open();
 
 async function skillsBox() {
     const {skills} = await loadModels()
