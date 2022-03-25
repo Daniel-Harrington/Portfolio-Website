@@ -13,12 +13,11 @@ camera.add(audiolistener);
 const gui = new dat.GUI();
 
 
-const folderCam = gui.addFolder('Camera');
-
-folderCam.add(camera.position, 'y', -1000, 1000, 1).name('Y');
-folderCam.add(camera.position, 'x', -1000, 10000, 1).name('X');
-folderCam.add(camera.position, 'z', -1000, 10000, 1).name('Z');
-folderCam.open()
+// const folderCam = gui.addFolder('Camera');
+// folderCam.add(camera.position, 'y', -1000, 1000, 1).name('Y');
+// folderCam.add(camera.position, 'x', -1000, 10000, 1).name('X');
+// folderCam.add(camera.position, 'z', -1000, 10000, 1).name('Z');
+// folderCam.open()
 
 
 export default camera
