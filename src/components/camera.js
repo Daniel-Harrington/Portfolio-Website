@@ -10,7 +10,7 @@ camera.position.y = -300
 camera.position.z = 5000
 camera.add(audiolistener);
 
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 
 
 // const folderCam = gui.addFolder('Camera');

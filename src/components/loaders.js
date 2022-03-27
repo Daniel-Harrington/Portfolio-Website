@@ -1,20 +1,20 @@
-import * as THREE from 'three';
+import { Audio, AudioLoader, LoadingManager, TextureLoader, MeshBasicMaterial, BackSide } from 'three';
 import { audiolistener, scene } from './globals';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 
 // Texture Loading
 //Audio Loading
-let loadSound = new THREE.Audio(audiolistener);
-let ambientSound = new THREE.Audio(audiolistener);
-const loadSoundLoader = new THREE.AudioLoader();
+let loadSound = new Audio(audiolistener);
+let ambientSound = new Audio(audiolistener);
+const loadSoundLoader = new AudioLoader();
 loadSoundLoader.load('./sounds/Loaded.mp3', function (buffer) {
   loadSound.setBuffer(buffer);
   loadSound.setVolume(0.1);
 });
 
 //Loading Screen
-const loadingManager = new THREE.LoadingManager(() => {
+const loadingManager = new LoadingManager(() => {
 
   const loadingScreen = document.getElementById('loading-screen');
   loadingScreen.classList.add('fade-out');
@@ -23,7 +23,7 @@ const loadingManager = new THREE.LoadingManager(() => {
 });
 
 //
-const audioLoader = new THREE.AudioLoader(loadingManager);
+const audioLoader = new AudioLoader(loadingManager);
 audioLoader.load('./sounds/WavesReduced.mp3', function (buffer) {
   ambientSound.setBuffer(buffer);
   ambientSound.setVolume(0.01);
@@ -38,7 +38,7 @@ function onTransitionEnd(event) {
 
 }
 //Creates Reusable Texture Loaders
-const textureLoader = new THREE.TextureLoader(loadingManager)
+const textureLoader = new TextureLoader(loadingManager)
 //Skybox Texture
 
 let skyboxImage = "space";
@@ -70,7 +70,7 @@ function createMaterialArray(filename) {
   const materialArray = Imagepaths.map(image => {
 
     let texture = textureLoader.load(image);
-    let material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
+    let material = new MeshBasicMaterial({ map: texture, side: BackSide });
     return material;
   });
 

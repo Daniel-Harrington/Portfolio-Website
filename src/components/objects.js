@@ -1,12 +1,12 @@
-import * as dat from 'dat.gui';
-import * as THREE from 'three';
+
+import { BoxGeometry, CircleGeometry, TextureLoader, RepeatWrapping, Vector3, Mesh } from 'three';
 import { Water } from 'three/examples/jsm/objects/Water.js';
 import { scene } from './globals';
 import { loadModels, skyboxMaterialArray } from './loaders';
 //
 // Objects
-const skyboxGeometry = new THREE.BoxGeometry(30000, 30000, 30000);
-const waterGeometry = new THREE.CircleGeometry(10000, 500);
+const skyboxGeometry = new BoxGeometry(30000, 30000, 30000);
+const waterGeometry = new CircleGeometry(10000, 500);
 
 // Materials
 const skyboxMaterial = skyboxMaterialArray
@@ -17,12 +17,12 @@ let water = new Water(
     {
         textureWidth: 512,
         textureHeight: 512,
-        waterNormals: new THREE.TextureLoader().load('textures/waternormals.webp', function (texture) {
+        waterNormals: new TextureLoader().load('textures/waternormals.webp', function (texture) {
 
-            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.wrapS = texture.wrapT = RepeatWrapping;
 
         }),
-        sunDirection: new THREE.Vector3(),
+        sunDirection: new Vector3(),
         sunColor: 0xffffff,
         waterColor: 0x001e0f,
         // waterColor: 0xff3200,
@@ -44,11 +44,11 @@ water.material.uniforms.distortionScale.value = 50
 console.log('water:', water)
 //
 
-const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial);
+const skybox = new Mesh(skyboxGeometry, skyboxMaterial);
+
 
 
 // Moved far from the camera, adjusted here so it will be consistent across all boxes
-
 class ContentBox {
     constructor(box, defaultRot, defaultPos) {
         this.mesh = box
@@ -66,7 +66,7 @@ function createBox(obj) {
 //Rotate Sky
 
 skybox.rotateY(Math.PI / 2)
-skybox.rotateZ(Math.PI / 6.5)
+skybox.rotation.x += Math.PI/6.5
 // const pmremGenerator = new THREE.PMREMGenerator(renderer);
 // scene.environment = pmremGenerator.fromEquirectangular
 //Individual Box Adjustments
