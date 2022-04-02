@@ -19,62 +19,63 @@ let tweenInProgress = false;
 
 //Skybox Interaction
 function setupSky(sky) {
+
     let quaternion = new THREE.Quaternion()
-    const horizon = sky.getWorldQuaternion(quaternion).clone()
-    // const horizonB = sky.rotateX((Math.PI/2)-(Math.PI/6.5)).getWorldQuaternion(quaternion).clone()
 
     window.addEventListener("wheel", ev => {
         if (!tweenInProgress) {
+
             let scrollDistance = ev.deltaY
-            const newRotation = sky.rotation.x - scrollDistance / 600
-            let tweenRot = new TWEEN.Tween(sky.rotation)
-                .to({ x: newRotation }, 1000)
-                .easing(TWEEN.Easing.Quadratic.Out)
-                .start();
+            const reducedScrollDist = scrollDistance / 600;
+            const newRotation = sky.rotation.x - reducedScrollDist
+            const day = sky.getWorldQuaternion(quaternion).x >= 0 && sky.getWorldQuaternion(quaternion).x < 1;
 
-            if (sky.getWorldQuaternion(quaternion).x >= 0 && sky.getWorldQuaternion(quaternion).x <= 0.5) {
-                console.log('front:', sky.getWorldQuaternion(quaternion).x)
-                let tweenSun = new TWEEN.Tween(sun)
-                    .to({
-                        intensity: Math.max(Math.min(10 * (sky.rotation.x - scrollDistance), 5), 0)
-                    }, 500)
-                    .easing(TWEEN.Easing.Quadratic.Out)
-                    .start();
-                    
-                tweenSun = new TWEEN.Tween(sun.position)
-                    .to({
-                        z: Math.max(Math.min(sun.position.z - scrollDistance * 10, 12000), -12000)
-                    }, 500)
-                    .easing(TWEEN.Easing.Quadratic.Out)
-                    .start();
-            }
-            else if (sky.getWorldQuaternion(quaternion).x > 0.5 && sky.getWorldQuaternion(quaternion).x < 1) {
-                console.log('back:', sky.getWorldQuaternion(quaternion).x)
-                let tweenSun = new TWEEN.Tween(sun)
-                    .to({
-                        intensity: Math.max(Math.min(10*(sky.rotation.x + scrollDistance), 5), 0),
-                    }, 500)
-                    .easing(TWEEN.Easing.Quadratic.Out)
-                    .start();
+            tweenSkyRot(newRotation);
 
-                tweenSun = new TWEEN.Tween(sun.position)
-                    .to({
-                        z: Math.max(Math.min(sun.position.z - scrollDistance * 10, 12000), -12000)
+            if (day) {
 
-                    }, 500)
-                    .easing(TWEEN.Easing.Quadratic.Out)
-                    .start();
+                const maxIntensity = 2;
+                const minIntensity = 0;
+                const newIntensity = Math.max(Math.sin((sky.getWorldQuaternion(quaternion).x)) * maxIntensity, minIntensity);
+                const maxSunZPos = 12000;
+                const minSunZPos = 0;
+                const newSunZ = Math.max(Math.min(sun.position.z - scrollDistance * 10, maxSunZPos), minSunZPos);
+
+                tweenSunIntensity(newIntensity)
+                tweenSunPosZ(newSunZ);
             }
             else {
-                console.log('night: ', sky.getWorldQuaternion(quaternion).x)
+                tweenSunIntensity(0);
                 sun.position.z += scrollDistance * 10
             }
-            console.log('cur sun intensity', sun.intensity)
 
         }
     }, { passive: true });
 
+    function tweenSkyRot(newRotation) {
+        return new TWEEN.Tween(sky.rotation)
+            .to({ x: newRotation }, 1000)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start();
+    }
 
+    function tweenSunPosZ(newZ) {
+        return new TWEEN.Tween(sun.position)
+            .to({
+                z: newZ
+            }, 500)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start();
+    }
+
+    function tweenSunIntensity(newIntensity) {
+        return new TWEEN.Tween(sun)
+            .to({
+                intensity: newIntensity,
+            }, 1000)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .start();
+    }
 }
 
 //Box Interactions

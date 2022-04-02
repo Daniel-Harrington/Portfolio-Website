@@ -10,7 +10,7 @@ function initLights() {
     ambient.intensity = 0.4
     scene.add(ambient)
 
-    sun = new DirectionalLight()
+    sun = new DirectionalLight(0xfffecd)
     sun.intensity = 1
     sun.position.y =  3000
     sun.position.z =  0

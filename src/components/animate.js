@@ -6,7 +6,7 @@ import { stats, rendererStats } from './debug';
 import { water } from './objects';
 import { sun } from './lights';
 const clock = new THREE.Clock()
-
+let quaternion = new THREE.Quaternion()
 
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
@@ -19,11 +19,6 @@ const tick = () => {
 
     //Simulating Day/Night Cycle
 
-    // sky.rotation.x += 2 * Math.PI * 0.00001
-
-    let boundedIntensity = Math.max(Math.min(10 * (sky.rotation.x - Math.PI / 6.5), 10), 0) // Bounds the intensity [0,115]
-
-    // sun.intensity = boundedIntensity //Match intensity to rotation
     // console.log('time uniform:', water.material.uniforms['time'].value )
     // Content Boxes Floating Animation
 
