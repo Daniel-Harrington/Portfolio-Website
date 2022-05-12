@@ -135,7 +135,7 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
             let tweenBoxPos = new TWEEN.Tween(box.position)
                 .to({
                     x: -2000,
-                    y: 2500,
+                    y: 1800,
                     z: 0
                 }, 1000)
                 .easing(TWEEN.Easing.Cubic.Out)
