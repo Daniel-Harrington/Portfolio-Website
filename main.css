@@ -264,7 +264,7 @@ p {
       }
     iframe{
         height: 35vh;
-        width: 60vw;
+        width: 100vw;
     }
     :root {
         --contentvw: 100%;
