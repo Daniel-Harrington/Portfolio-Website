@@ -238,6 +238,10 @@ p {
         flex: 50%;
         gap: 10px;
       }
+      :root {
+        --contentvw: 60%;
+        --contentmargin: 10%;
+      }
   }
   
   /* For Mobile Size: */
@@ -262,17 +266,22 @@ p {
         height: 35vh;
         width: 60vw;
     }
+    :root {
+        --contentvw: 100%;
+        --contentmargin: 30%;
+      }
+      
   }
 #projects-area {
     visibility: hidden;
 	position: absolute;
     align-items: center;
     background-color: #292929;
-	width: 60%;
+	width: var(--contentvw);
 	height: 70%;
     margin: auto;
-    padding: 1%;
-    margin-top: 10%;
+    padding: 4%;
+    margin-top: var(--contentmargin);
     left: 0;
     right: 0;
     top: 0;
@@ -291,11 +300,11 @@ p {
 	position: absolute;
     align-items: center;
     background-color: #292929;
-	width: 60%;
+	width: var(--contentvw);
 	height: 70%;
     margin: auto;
-    padding: 1%;
-    margin-top: 10%;
+    padding: 4%;
+    margin-top: var(--contentmargin);
     left: 0;
     right: 0;
     top: 0;

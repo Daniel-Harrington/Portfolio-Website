@@ -4,7 +4,7 @@ import * as dat from 'dat.gui';
 // Lights
 let sun;
 
-const gui = new dat.GUI();
+
 
 function initLights() {
     // scene.add(LightHelper)
@@ -18,7 +18,7 @@ function initLights() {
     sun.position.z =  0
     scene.add(sun)
     if (process.env.NODE_ENV === 'development') {
-       
+    const gui = new dat.GUI();   
     const light1 = gui.addFolder('Light 1')
     light1.add(sun.position, 'y').min(-6000).max(6000).step(1)
     light1.add(sun.position, 'x').min(-6000).max(6000).step(1)
