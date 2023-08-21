@@ -53,7 +53,8 @@ a:hover {
 
 iframe{
     height: 35vh;
-    width: 30vw;
+    width: 28vw;
+    align-self: center;
 }
 
 h1 { 
@@ -223,25 +224,28 @@ p {
     .grid-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* Display 3 columns */
-      gap: 10px; /* Add some gap between items */
+      column-gap: 10px; /* Add some gap between items */
     }
     .row {
         display: flex;
+        
       }
     
     .grid-item {
       padding: 10px;
       font-size: 30px;
-      text-align: center;
+      text-align: left;
     }
     .column {
-        flex: 50%;
-        gap: 10px;
+        flex: 48%;
+        column-gap: 10px; /* Add some gap between items */
+
       }
       :root {
         --contentvw: 60%;
         --contentmargin: 10%;
       }
+      
   }
   
   /* For Mobile Size: */
@@ -264,7 +268,7 @@ p {
       }
     iframe{
         height: 35vh;
-        width: 100vw;
+        width: 100%;
     }
     :root {
         --contentvw: 100%;
