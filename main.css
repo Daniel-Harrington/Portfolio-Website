@@ -53,8 +53,9 @@ a:hover {
 
 iframe{
     height: 35vh;
-    width: 28vw;
-    align-self: center;
+    width: 30vw;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 h1 { 
@@ -268,7 +269,9 @@ p {
       }
     iframe{
         height: 35vh;
-        width: 100%;
+        width: 90%;
+         margin-left: 2%;
+        margin-right: 2%;
     }
     :root {
         --contentvw: 100%;
