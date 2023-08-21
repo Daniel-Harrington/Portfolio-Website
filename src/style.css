@@ -263,8 +263,7 @@ p {
         width: 60vw;
     }
   }
-
-#content-area {
+#projects-area {
     visibility: hidden;
 	position: absolute;
     align-items: center;
@@ -284,9 +283,31 @@ p {
  	transition: 0.5s opacity;
     
 }
-#content-area.fade-in {
+#projects-area.fade-in {
     opacity: 0.95;
 }
-
+#skills-area {
+    visibility: hidden;
+	position: absolute;
+    align-items: center;
+    background-color: #292929;
+	width: 60%;
+	height: 70%;
+    margin: auto;
+    padding: 1%;
+    margin-top: 10%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+	opacity: 0;
+    overflow-y: visible;
+    overflow-x: hidden;
+ 	transition: 0.5s opacity;
+    
+}
+#skills-area.fade-in {
+    opacity: 0.95;
+}
 
 /*# sourceMappingURL=main.css.map*/

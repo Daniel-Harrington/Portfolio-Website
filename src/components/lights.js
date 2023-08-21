@@ -3,9 +3,9 @@ import { AmbientLight, HemisphereLight, DirectionalLight,DirectionalLightHelper 
 import * as dat from 'dat.gui';
 // Lights
 let sun;
-if (process.env.NODE_ENV === 'development') {
+
 const gui = new dat.GUI();
-}
+
 function initLights() {
     // scene.add(LightHelper)
     const ambient = new AmbientLight()

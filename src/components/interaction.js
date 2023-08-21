@@ -97,7 +97,7 @@ function setupBoxInteractions(object) {
     //Handles Clicks
     object.mesh.on('mousedown', ev => {
         if (!tweenInProgress) {
-            contentboxOnClick(object.mesh, object.defaultRot, object.defaultPos, object.clicked)
+            contentboxOnClick(object.mesh, object.defaultRot, object.defaultPos, object.clicked,object.boxName)
             //Flips the box clicked bool attribute
             object.clicked = !object.clicked
         }
@@ -106,11 +106,15 @@ function setupBoxInteractions(object) {
 };
 
 //Handles Content Animations
-const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
+const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked,boxName) => {
     console.log('box', box)
     console.log('boxDefR', defaultRot)
     console.log('boxDefP', defaultPos)
-    const content = document.getElementById('content-area')
+    let content = document.getElementById('projects-area')
+    if(boxName === "Skills"){
+         content = document.getElementById('skills-area')
+    }
+    
     let currentPos = box.position
     console.log('currentpos', box.position)
     //Initializing new position in clear camera view
@@ -128,7 +132,7 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked) => {
                 .easing(TWEEN.Easing.Back.In)
                 .onComplete(() => {
                     content.style.visibility = 'visible'
-                    content.classList.add('fade-in');
+                        content.classList.add('fade-in');
                 })
                 .onStart(() => { tweenInProgress = true })
                 .start();

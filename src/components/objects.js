@@ -50,16 +50,17 @@ const skybox = new Mesh(skyboxGeometry, skyboxMaterial);
 
 // Moved far from the camera, adjusted here so it will be consistent across all boxes
 class ContentBox {
-    constructor(box, defaultRot, defaultPos) {
+    constructor(box, defaultRot, defaultPos,id) {
         this.mesh = box
         this.defaultPos = defaultPos
         this.defaultRot = defaultRot
         this.clicked = false
+        this.boxName = id
     }
 }
 //Setup Boxes
-function createBox(obj) {
-    let box = new ContentBox(obj, obj.rotation.clone(), obj.position.clone())
+function createBox(obj,id) {
+    let box = new ContentBox(obj, obj.rotation.clone(), obj.position.clone(),id)
     return box
 }
 
@@ -81,7 +82,7 @@ async function skillsBox() {
     scene.add(skills)
     skills.scale.set(2, 2, 2)
     skills.position.set(0, 0, -1000)
-    const skillsBox = createBox(skills, skills.position.clone(), skills.rotation.clone())
+    const skillsBox = createBox(skills,"Skills")
     console.log('SkillsBox:', skillsBox)
     return skillsBox
 }
@@ -93,7 +94,7 @@ async function projectsBox() {
     projects.position.set(1000, 1000, -1000)
     projects.rotateY(-Math.PI / 5)
     projects.rotateX(Math.PI / 6)
-    const projectsBox = createBox(projects, projects.position.clone(), projects.rotation.clone())
+    const projectsBox = createBox(projects,"Projects")
     console.log(' projectsBox:', projectsBox)
     return projectsBox
 }
