@@ -3,7 +3,9 @@ import { AmbientLight, HemisphereLight, DirectionalLight,DirectionalLightHelper 
 import * as dat from 'dat.gui';
 // Lights
 let sun;
+if (process.env.NODE_ENV === 'development') {
 const gui = new dat.GUI();
+}
 function initLights() {
     // scene.add(LightHelper)
     const ambient = new AmbientLight()
@@ -15,7 +17,8 @@ function initLights() {
     sun.position.y =  3000
     sun.position.z =  0
     scene.add(sun)
-
+    if (process.env.NODE_ENV === 'development') {
+       
     const light1 = gui.addFolder('Light 1')
     light1.add(sun.position, 'y').min(-6000).max(6000).step(1)
     light1.add(sun.position, 'x').min(-6000).max(6000).step(1)
@@ -27,6 +30,7 @@ scene.add(sunHelper)
     // sun = new HemisphereLight()
     // sun.intensity = 0.2
     // scene.add(sun)
+    }
 }
 
 export { initLights, sun };

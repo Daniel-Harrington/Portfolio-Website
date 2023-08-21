@@ -258,6 +258,10 @@ p {
     .column {
         flex: 100%;
       }
+    iframe{
+        height: 35vh;
+        width: 60vw;
+    }
   }
 
 #content-area {
