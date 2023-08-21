@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Daniel Harrington's Three-JS Web Portfolio">
+  <META HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="http://www.youtube.com">
   <title>Welcome</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -16,14 +17,152 @@
   <!-- CDN Link to Three.js -->
 
   <script type="module" src="./script.js"></script>
+  <script src="https://kit.fontawesome.com/af481b3dcb.js" crossorigin="anonymous"></script>
   <section id="loading-screen">
     <div id="loader"></div>
   </section>
-  <section id="content-area">
-    <b>Debating Whether to go this route or the CSS3D route for displaying text. 
-      This format is 100% more compatible and safe for all browsers, may be important for what goes here.
-      Need to see more about how nice i can make this look right now it is jarring
-    </b>
+  <section id="content-area" class="post-container">
+    <div class="post-header">
+      <h1>My Adventures in Code</h1>
+      <p>In this area, I have a collection of projects I have worked on. You will likely notice that,
+        just like this website; I tend towards learning and experimenting with unique technologies.
+        Though the technically difficulty of these projects varies greatly, I believe there is
+        also alot to be learned from implementing simple technologies creatively in addition to understanding
+        the technically complex.
+      </p>
+      <div class="grid-container">
+        <div class="grid-item" ><a href = '#website'> Portfolio Website</a></div>
+        <div class="grid-item" ><a href = '#AR'> AR Hand-Tracking</a></div>
+        <div class="grid-item" ><a href = '#Map'> Voronoi Map Generation</a></div>
+        <div class="grid-item" ><a href = '#AR'> SDL2 Game Development</a></div>
+        <div class="grid-item" ><a href = '#AR'> AI Generated WikiHow</a></div>
+        <div class="grid-item" ><a href = '#AR'> Accessible Client Interface </a></div>
+        <div class="grid-item" ><a href = '#AR'> NHL Game Prediction</a></div>
+        <div class="grid-item" ><a href = '#AR'> Turtle Graphics in C</a></div>
+        <div class="grid-item" ><a href = '#AR'> Schedule Comparison Social Media App</a></div>
+
+      </div> 
+        <h2 id = 'website'><a target="_blank" class="fa-brands fa-square-github" href="https://github.com/Daniel-Harrington/Portfolio-Website"></a> #This Website - Status: Ongoing  </h2>
+      
+        <h3>Technologies Used : JS,Three.js,HTML,CSS,Git</h3>
+        <h4>Notable Feature Summary: <br \>
+          - Performant on web and mobile despite extensive 3d rendering<br \>
+          - Quaternion based day/night cycle, accelerated by scrolling<br \>
+          - Modular section tiles including camera and tile translations<br \>
+        </h4>
+        <div class="row">
+        <div class="column">
+          <p>This website went through quite a few initial design iterations but the goals were always the same:<br  \>
+            <br  \>
+            - Learn Git and Manage a Larger projects<br  \>
+            - Learn Three.JS using almost soley documentation<br  \>
+            - Create something unique that would make people say "I've never seen a website like that"<br  \>
+            <br  \>
+            This project took about a month and I learned alot about using Git safely to maintain the project (After breaking
+            it quite a few times). I wanted to focus on learning through documentation to be better prepared for using technologies
+            that were too obscure to have many tutorials or forum solutions, I ran into a few issue but overall it went smoothly and 
+            it was an enjoyable jump into webGL's capabilities.
+            <br  \><br  \>
+            My big takeaways from this project were more robust workflow practices, an appreciation for quaternions and practice
+            compartmentalizing issues across a broader program. In the future I think i would work to seperate the components further
+            as in the end many components did end up relying on eachother cyclically.
+          </p>
+        </div>
+        <div class="column">
+           <br />
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/uPVaR4vkwpw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>      
+          <br /> <br />
+          <h4>(Above) - An early iteration of the websites background using a lit texture mapped along a sinusoidal function,
+            unfortunately the isolating the lighting of just the background from the rest of the scene would have added too much overhead
+            to the project, and I think the final space-themed version better represents me anyways.
+          </h4>
+        </div>
+        </div>
+        <h2 id = 'AR'><a target="_blank" class="fa-brands fa-square-github" href="https://github.com/Daniel-Harrington/Exam-Buddy"></a> #Exam Buddy - Status: Completed</h2>
+        <h3>Technologies Used : Python,Google Mediapipe</h3>
+        <h4>Notable Feature Summary: <br \>
+          - Capable of handling many hands in frame<br \>
+          - Requires only a minimally-specced latop and laptop webcam<br \>
+          - Handling of inverted hands<br \>
+        </h4>
+        <div class="row">
+          <div class="column">
+            <p>
+              The goal of this small project was to get some hand on experience applying computer vision
+              as well as some linear algebra concepts.<br />
+              The face is drawn to a polygon that has been created from several points on the hand and wrist.
+              The face is then made angry or sad based on the determinant of some vectors forming part of that polygon.
+              This was an interesting chance to apply the concept of the determinantbeing the area of a given parralellipiped
+              and worked smoothly after I realised that the coordinate system openCV2 was using had its origin in the top right
+              of the window.  
+              <br /><br />
+              This sparked my interest in augmented reality as when I dove into the field to try mapping my whole body to a 3d model
+              using Google's broader mediapipe library found that the field was incredible young still. The second video is me
+              experimenting with a media-pipe based program that was entirely documented in chinese and only 2 weeks old when I found it.
+            </p>
+          </div>
+          <div class="column">
+            <iframe src="https://www.youtube.com/embed/iIrB5kKulUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/0ZKNcMEjG4s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          </div>
+          <h2 id = 'Map'> #Voronoi Map Generation - Status: Ongoing</h2>
+          <h3>Technologies Used : C++,OpenGL, Unity,C#</h3>
+          <h4>Notable Feature Summary: <br \>
+            - Implementation of a Voronoi dual mesh in c++ and OpenGl using Delaunay Triangulation<br \>
+            - Efficient traversal of graph representation within c#<br \>
+            - Self contained map-representation class.<br \>
+          </h4>
+          <div class="row">
+            <div class="column">
+              <p>
+               This project was inspired by reading through <a href="http://www-cs-students.stanford.edu/~amitp/game-programming/polygon-map-generation/">Amit Patel's articles </a>on dual-mesh map generation.
+               My goal was to reimpliment the concept from mostly scratch (I used a delaunay triangulation library and a poisson distribution library) in C++.<br \>
+                <br /><br />
+                I made significant progress using this method with just C++ and opengl and was very careful about structing my code effectively.
+                Eventually however, my progress implementing the concept in c++ felt more like i was wrestling with OpenGL than geting a feel for this
+                intersting data structure so I decided to try using someones unity implementation of it to try my idea more quickly more technical details
+                about the C++/OpenGL variant included generation speed etc is listed on it's github page.
+                <br /><br />    I had originally
+                thought that this data structure would be amazing for simulation-style games and so I created a system for spawning random civilisations
+                and their people and letting them traverse the area that worked very well. I am a big fan of the idea of gameplay emerging from complex systems
+                as is the case with things like Tynan Sylvestor's "Rimworld" and  Joar Jakobsson's "Rain World" and intend to continue trying my hand at it as more
+                free time presents itself.
+                <br /><br />    In the Unity version, each civilization is spawned inside a random safe biome polygon on the mesh. You can see in the video that the circles representing units are grouped in colours by their civilisation then move independantly throughout other regions avoiding the ocean.
+                <br /><br />    
+              </p>
+            </div>
+            <div class="column">
+                <h4>(Below) - C++/OpenGL Dual-Mesh at various Generation Stages</h4>
+                <div style="gap: 1px;" class="row">
+                    <div style="padding: 0%;margin:2%" class="column">
+                        <img style="max-width: 100%;max-height:100%;" src="https://user-images.githubusercontent.com/6415123/168144964-81afd968-6a37-4ec6-9bc4-6bae63076d66.png"/>
+                    </div>
+                    <div style="padding: 0%;margin:2%" class="column">
+                        <img style="max-width: 100%;max-height:100%;"src="https://user-images.githubusercontent.com/6415123/168145136-24fa533e-5746-479c-9b83-186d192a940b.png"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="padding: 0%;margin:2%" class="column">
+                        <img style="max-width: 100%;max-height:100%;"src="https://user-images.githubusercontent.com/6415123/168145300-4a447e6b-6a89-4b4e-b180-10a580872da7.jpg"/>
+
+                    </div>
+                    <div style="padding: 0%;margin:2%" class="column">
+                        <img style="max-width: 100%;max-height:100%;"src="https://user-images.githubusercontent.com/6415123/168145405-09c57bad-f148-4ad6-a7c4-92c3963d1d35.png"/>
+
+                    </div>
+                    <div style="padding: 0%;margin:2%" class="column">
+                        <img style="max-width: 100%;max-height:100%;"src="https://user-images.githubusercontent.com/6415123/168145476-9c0891cc-b605-4bf8-b449-bf960864bcb8.png"/>
+
+                    </div>
+                </div>
+            
+             <h4> (Below) - Unity/C# Implementation</h4>
+              
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/a_M3nJ0h4xM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            </div>
+      
   </section>
 </body>
 

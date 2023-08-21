@@ -12,6 +12,7 @@
     "@babel/preset-env": "^7.13.5",
     "@tweenjs/tween.js": "^18.6.4",
     "@xailabs/three-renderer-stats": "^1.0.4",
+    "autoprefixer": "10.4.5",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^7.0.0",
