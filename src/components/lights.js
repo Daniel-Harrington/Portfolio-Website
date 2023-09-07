@@ -1,5 +1,5 @@
 import { scene } from './globals'
-import { AmbientLight, HemisphereLight, DirectionalLight,DirectionalLightHelper } from 'three';
+import { AmbientLight, DirectionalLight,PointLight,PointLightHelper } from 'three';
 // Lights
 let sun;
 
@@ -12,11 +12,19 @@ function initLights() {
     scene.add(ambient)
 
     sun = new DirectionalLight(0xfffecd)
-    sun.intensity = 1
+    sun.intensity = 10
     sun.position.y =  3000
     sun.position.z =  0
     scene.add(sun)
-
+    
+    const optionLight = new PointLight(0x8e8e8e, 1, 0,4 );
+    optionLight.power = 40
+    optionLight.position.set( 0, 1000, 1000 )
+    scene.add( optionLight );
+    // const helper = new PointLightHelper(optionLight,100)
+    // scene.add(helper)
+    
+    
 }
 
-export { initLights, sun };
+export { initLights, sun};

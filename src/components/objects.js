@@ -61,6 +61,7 @@ class ContentBox {
 //Setup Boxes
 function createBox(obj,id) {
     let box = new ContentBox(obj, obj.rotation.clone(), obj.position.clone(),id)
+   
     return box
 }
 
@@ -80,8 +81,10 @@ async function skillsBox() {
     const { skills } = await loadModels()
     console.log('skills:', skills)
     scene.add(skills)
-    skills.scale.set(2, 2, 2)
-    skills.position.set(0, 0, -1000)
+    skills.scale.set(5,5,5)
+    
+    skills.position.set(-1800, 0, -800)
+    skills.rotateY(Math.PI / 8)
     const skillsBox = createBox(skills,"Skills")
     console.log('SkillsBox:', skillsBox)
     return skillsBox
@@ -90,13 +93,23 @@ async function projectsBox() {
     const { projects } = await loadModels()
     console.log(' projects:', projects)
     scene.add(projects)
-    projects.scale.set(3, 3, 3)
-    projects.position.set(1000, 1000, -1000)
-    projects.rotateY(-Math.PI / 5)
-    projects.rotateX(Math.PI / 6)
+    projects.position.set(0, 0, -1000)
+    projects.scale.set(5,5,5)
+    
     const projectsBox = createBox(projects,"Projects")
     console.log(' projectsBox:', projectsBox)
     return projectsBox
+}
+async function contactBox() {
+    const { contact } = await loadModels()
+    console.log(' contact:', contact)
+    scene.add(contact)
+    contact.position.set(1800, 0, -800)
+    contact.scale.set(5,5,5)
+    contact.rotateY(-Math.PI / 8)
+    const contactBox = createBox(contact,"contact")
+    console.log(' contactBox:', contactBox)
+    return contactBox
 }
 console.log('this is water uniforms', water.material.uniforms['size'].value)
 
@@ -105,6 +118,7 @@ export {
     skybox,
     water,
     skillsBox,
-    projectsBox
+    projectsBox,
+    contactBox
 };
 

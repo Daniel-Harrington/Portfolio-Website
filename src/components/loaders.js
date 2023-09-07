@@ -88,18 +88,30 @@ function setupModel(data) {
 //Model Loader
 
 
+// Model Loader
 async function loadModels() {
-  const loader = new GLTFLoader(loadingManager)
-  const [skillsData,projectsData] = await Promise.all([
-    loader.loadAsync('./models/Skills.glb'),
-    loader.loadAsync('./models/Projects.glb')
-  ]);
-   
-  const skills = setupModel( skillsData)
-  const projects = setupModel(projectsData)
-  return {
-    skills,
-    projects
+  const loader = new GLTFLoader(loadingManager);
+
+  try {
+    var [skillsData, projectsData,contactData] = await Promise.all([
+      loader.loadAsync('./models/Skills.glb'),
+      loader.loadAsync('./models/Projects2.glb'),
+      loader.loadAsync('./models/Contact.glb')
+
+    ]);
+
+    const skills = setupModel(skillsData);
+    const projects = setupModel(projectsData);
+    const contact = setupModel(contactData);
+
+    return {
+      skills,
+      projects,
+      contact
+    };
+  } catch (error) {
+    // Handle any errors that occur during model loading.
+    console.error('Error loading models:', error);
   }
 }
 export {loadModels, skyboxMaterialArray }

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { skills, sky, projects } from './init';
+import { skills, sky, projects,contact } from './init';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min';
 import { controls, render, renderer } from './renderer';
 import { stats, rendererStats } from './debug';
@@ -16,6 +16,7 @@ const tick = () => {
 
     skills.mesh.position.y += -0.25 * Math.sin(elapsedTime)
     projects.mesh.position.y += 0.25 * Math.sin(elapsedTime)
+    contact.mesh.position.y += 0.25 * Math.sin(elapsedTime)
 
     //Simulating Day/Night Cycle
 

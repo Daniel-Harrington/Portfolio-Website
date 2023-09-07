@@ -1,18 +1,21 @@
 import camera from './camera.js';
 import { renderer } from './renderer';
 import { scene, sizes } from './globals.js';
-import { skybox, water, updateSun, skillsBox,projectsBox } from './objects.js';
+import { skybox, water, updateSun, skillsBox,projectsBox,contactBox} from './objects.js';
 import { initLights } from './lights';
 import { setupBoxInteractions, setupSky} from './interaction.js';
 
-let skills,projects,sky;
+let skills,projects,sky,contact;
 async function init() {
     skills = await skillsBox()
     projects = await projectsBox() 
+    contact = await contactBox()
     //Adding all meshes to scene
-    scene.add(skills.mesh)
+    //scene.add(skills.mesh)
     setupBoxInteractions(skills)
     setupBoxInteractions(projects)
+    setupBoxInteractions(contact)
+
     // ContentBoxes.forEach(box => {
     //     scene.add(box.mesh)
     //     setupBoxInteractions(box)
@@ -26,6 +29,7 @@ async function init() {
     console.log(water)
     scene.add(water)
     setupSky(sky)
+    
 
     window.addEventListener('resize', () => {
         // Update sizes
@@ -50,4 +54,4 @@ async function init() {
 
 
 
-export { init, skills,sky,projects }
+export { init, skills,sky,projects,contact }
