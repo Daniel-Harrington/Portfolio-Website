@@ -9,6 +9,7 @@ body
 {
     font-family: 'Poppins';
     background-color: rgb(24,24,24);
+    overflow: hidden;
 }   
 
 .webgl
@@ -325,7 +326,29 @@ p {
 #skills-area.fade-in {
     opacity: 0.95;
 }
-
+#contact-area {
+    visibility: hidden;
+	position: absolute;
+    align-items: center;
+    background-color: #292929;
+	width: var(--contentvw);
+	height: 70%;
+    margin: auto;
+    padding: 4%;
+    margin-top: var(--contentmargin);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+	opacity: 0;
+    overflow-y: visible;
+    overflow-x: hidden;
+ 	transition: 0.5s opacity;
+    
+}
+#contact-area.fade-in {
+    opacity: 0.95;
+}
 /*# sourceMappingURL=main.css.map*/
 
 /*# sourceMappingURL=main.css.map*/
