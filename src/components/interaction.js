@@ -1,4 +1,4 @@
-import { scene } from './globals';
+import { scene,camz } from './globals';
 import * as THREE from 'three';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min';
 import { Interaction } from 'three.interaction';
@@ -126,7 +126,7 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked,boxName) => {
             let tweenCamPos = new TWEEN.Tween(camera.position)
                 .to({
                     x: 2500,
-                    y: 500,
+                    y: 600,
                     z: 0
                 }, 1000)
                 .easing(TWEEN.Easing.Back.In)
@@ -200,7 +200,7 @@ const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked,boxName) => {
                 .to({
                     x: 0,
                     y: -200,
-                    z: 5000
+                    z: camz
                 }, 700)
                 .easing(TWEEN.Easing.
                     Back.In)

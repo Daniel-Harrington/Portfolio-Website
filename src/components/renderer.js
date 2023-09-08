@@ -11,7 +11,6 @@ const renderer = new THREE.WebGLRenderer({
 const controls = new OrbitControls( camera, renderer.domElement );
 controls.enableZoom = false
 renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 controls.enabled = false;//set true for debug orbital flight
 
