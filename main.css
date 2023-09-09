@@ -237,7 +237,7 @@ p {
     .grid-item {
       padding: 10px;
       font-size: 30px;
-      text-align: left;
+      text-align: center;
     }
     .column {
         flex: 48%;
