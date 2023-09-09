@@ -85,9 +85,6 @@ function setupModel(data) {
   return model;
 }
 
-//Model Loader
-
-
 // Model Loader
 async function loadModels() {
   const loader = new GLTFLoader(loadingManager);
@@ -95,7 +92,7 @@ async function loadModels() {
   try {
     var [skillsData, projectsData,contactData] = await Promise.all([
       loader.loadAsync('./models/Skills.glb'),
-      loader.loadAsync('./models/Projects2.glb'),
+      loader.loadAsync('./models/Projects.glb'),
       loader.loadAsync('./models/Contact.glb')
 
     ]);

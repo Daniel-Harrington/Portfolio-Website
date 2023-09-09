@@ -4,7 +4,7 @@ import { TWEEN } from 'three/examples/jsm/libs/tween.module.min';
 import { controls, render, renderer } from './renderer';
 import { stats, rendererStats } from './debug';
 import { water } from './objects';
-import { sun } from './lights';
+import { ismobile } from './globals';
 const clock = new THREE.Clock()
 let quaternion = new THREE.Quaternion()
 
@@ -13,10 +13,16 @@ const tick = () => {
 
 
     water.material.uniforms['time'].value = elapsedTime + 1;
-
-    skills.mesh.position.y += -0.25 * Math.sin(elapsedTime)
-    projects.mesh.position.y += 0.25 * Math.sin(elapsedTime)
-    contact.mesh.position.y += 0.25 * Math.sin(elapsedTime)
+    if (ismobile) {
+        skills.mesh.position.y += -0.20 * Math.sin(elapsedTime)
+        projects.mesh.position.y += 0.20 * Math.sin(elapsedTime)
+        contact.mesh.position.y += 0.20 * Math.sin(elapsedTime)
+    } else {
+        skills.mesh.position.y += -0.25 * Math.sin(elapsedTime)
+        projects.mesh.position.y += 0.25 * Math.sin(elapsedTime)
+        contact.mesh.position.y += 0.25 * Math.sin(elapsedTime)
+    }
+   
 
     //Simulating Day/Night Cycle
 

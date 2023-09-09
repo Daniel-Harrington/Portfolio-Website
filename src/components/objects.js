@@ -1,7 +1,7 @@
 
 import { BoxGeometry, CircleGeometry, TextureLoader, RepeatWrapping, Vector3, Mesh } from 'three';
 import { Water } from 'three/examples/jsm/objects/Water.js';
-import { scene } from './globals';
+import { scene,ismobile } from './globals';
 import { loadModels, skyboxMaterialArray } from './loaders';
 //
 // Objects
@@ -41,7 +41,7 @@ water.material.uniforms.distortionScale.value = 50
 */
 //
 
-console.log('water:', water)
+//console.log('water:', water)
 //
 
 const skybox = new Mesh(skyboxGeometry, skyboxMaterial);
@@ -83,35 +83,52 @@ async function skillsBox() {
     scene.add(skills)
     skills.scale.set(5,5,5)
     
+    if (ismobile) {
+        skills.position.set(0, 1800, -1000)
+        skills.rotateY(Math.PI / 10)
+    }else{
     skills.position.set(-1800, 0, -800)
     skills.rotateY(Math.PI / 8)
+    }
+    
     const skillsBox = createBox(skills,"Skills")
-    console.log('SkillsBox:', skillsBox)
+    //console.log('SkillsBox:', skillsBox)
     return skillsBox
 }
 async function projectsBox() {
     const { projects } = await loadModels()
-    console.log(' projects:', projects)
+    //console.log(' projects:', projects)
     scene.add(projects)
+    if (ismobile) {
     projects.position.set(0, 0, -1000)
+    } else {
+        projects.position.set(0, 0, -1400)
+    }
     projects.scale.set(5,5,5)
     
     const projectsBox = createBox(projects,"Projects")
-    console.log(' projectsBox:', projectsBox)
+    //console.log(' projectsBox:', projectsBox)
     return projectsBox
 }
 async function contactBox() {
     const { contact } = await loadModels()
-    console.log(' contact:', contact)
+    //console.log(' contact:', contact)
     scene.add(contact)
+    //console.log('IM: ',ismobile)
+    if (ismobile) {
+        contact.position.set(0, 900, -1000)
+        contact.rotateY(-Math.PI / 10)
+    }else{
     contact.position.set(1800, 0, -800)
-    contact.scale.set(5,5,5)
     contact.rotateY(-Math.PI / 8)
-    const contactBox = createBox(contact,"contact")
-    console.log(' contactBox:', contactBox)
+    }
+    contact.scale.set(5,5,5)
+    
+    const contactBox = createBox(contact,"Contact")
+    //onsole.log(' contactBox:', contactBox)
     return contactBox
 }
-console.log('this is water uniforms', water.material.uniforms['size'].value)
+//console.log('this is water uniforms', water.material.uniforms['size'].value)
 
 export {
     createBox,

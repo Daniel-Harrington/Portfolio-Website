@@ -23,10 +23,10 @@ async function init() {
     
    
     scene.add(camera)
-    console.log(skybox)
+    //console.log(skybox)
     sky = skybox
     scene.add(sky)  
-    console.log(water)
+    //console.log(water)
     scene.add(water)
     setupSky(sky)
     
@@ -39,7 +39,7 @@ async function init() {
         // Update camera
         camera.aspect = sizes.width / sizes.height
         camera.updateProjectionMatrix()
-
+        
         // Update renderer
         renderer.setSize(sizes.width, sizes.height)
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))

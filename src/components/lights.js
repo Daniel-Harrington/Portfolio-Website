@@ -1,4 +1,4 @@
-import { scene } from './globals'
+import { ismobile, scene } from './globals'
 import { AmbientLight, DirectionalLight,PointLight,PointLightHelper } from 'three';
 // Lights
 let sun;
@@ -17,9 +17,16 @@ function initLights() {
     sun.position.z =  0
     scene.add(sun)
     
-    const optionLight = new PointLight(0x8e8e8e, 1, 0,4 );
-    optionLight.power = 40
-    optionLight.position.set( 0, 1000, 1000 )
+    const optionLight = new PointLight(0x8e8e8e, 1, 0 );
+    
+    if (ismobile) {
+        optionLight.position.set( 0, 1900, 500 )
+        optionLight.power = 50
+    } else {
+        optionLight.power = 30
+        optionLight.position.set( 0, 1000, 1000 )
+    }
+    
     scene.add( optionLight );
     // const helper = new PointLightHelper(optionLight,100)
     // scene.add(helper)

@@ -9,6 +9,7 @@ body
 {
     font-family: 'Poppins';
     background-color: rgb(24,24,24);
+    overflow: hidden;
 }   
 
 .webgl
@@ -67,6 +68,7 @@ h1 {
     padding: 20px 0 40px;
     margin-top: 20px;
     border-bottom: double #2796c9;
+    text-align: center;
          }
 h2 { 
     color: #c9d0d4;
@@ -248,11 +250,7 @@ p {
       }
       
   }
-  .canvas-container {
-    width: 80%; /* Make the container fill the width of the viewport */
-    height: 100vh; /* Make the container fill the height of the viewport */
-    background-color: #000; /* Set a background color for the container */
-}
+
   /* For Mobile Size: */
   @media only screen and (max-width: 767px) {
     .grid-container {
@@ -329,7 +327,29 @@ p {
 #skills-area.fade-in {
     opacity: 0.95;
 }
-
+#contact-area {
+    visibility: hidden;
+	position: absolute;
+    align-items: center;
+    background-color: #292929;
+	width: var(--contentvw);
+	height: 70%;
+    margin: auto;
+    padding: 4%;
+    margin-top: var(--contentmargin);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+	opacity: 0;
+    overflow-y: visible;
+    overflow-x: hidden;
+ 	transition: 0.5s opacity;
+    
+}
+#contact-area.fade-in {
+    opacity: 0.95;
+}
 /*# sourceMappingURL=main.css.map*/
 
 /*# sourceMappingURL=main.css.map*/

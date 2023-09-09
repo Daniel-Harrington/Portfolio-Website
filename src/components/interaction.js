@@ -91,7 +91,7 @@ function setupBoxInteractions(object) {
         }
     }, { passive: true })
     object.mesh.on('touchmove', ev => {
-        console.log(ev)
+        // console.log(ev)
     }, { passive: true })
 
     //Handles Clicks
@@ -107,16 +107,18 @@ function setupBoxInteractions(object) {
 
 //Handles Content Animations
 const contentboxOnClick = (box, defaultRot, defaultPos, boxClicked,boxName) => {
-    console.log('box', box)
-    console.log('boxDefR', defaultRot)
-    console.log('boxDefP', defaultPos)
+    // console.log('box', box)
+    // console.log('boxDefR', defaultRot)
+    // console.log('boxDefP', defaultPos)
     let content = document.getElementById('projects-area')
     if(boxName === "Skills"){
          content = document.getElementById('skills-area')
+    } else if (boxName === "Contact"){
+        content = document.getElementById('contact-area')
     }
     
     let currentPos = box.position
-    console.log('currentpos', box.position)
+    //console.log('currentpos', box.position)
     //Initializing new position in clear camera view
     const newPos = new THREE.Vector3(0, 0, 4000)
     if (tweenInProgress == false) {
